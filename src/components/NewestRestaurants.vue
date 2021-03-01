@@ -28,9 +28,9 @@ import moment from 'moment'
 
 export default {
   filters: {
-    fromNow(value) {
-      if(!value) return `-`
-      return moment(value).fromNow()
+    fromNow(datetime) {
+      if(!datetime) return `-`
+      return moment(datetime).fromNow()
     }
   },
   props: {
