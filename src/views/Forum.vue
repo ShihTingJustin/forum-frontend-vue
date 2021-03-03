@@ -1,9 +1,13 @@
 <template>
   <div class="container py-5">
     <NavTabs />
-
+    <RestaurantsNavPills :categories="categories" />
     <div class="row">
-      <RestaurantCard v-for="restaurant in restaurants" :key="restaurant.id" :initial-restaurant="restaurant" />
+      <RestaurantCard
+        v-for="restaurant in restaurants"
+        :key="restaurant.id"
+        :initial-restaurant="restaurant"
+      />
     </div>
   </div>
 </template>
@@ -11,6 +15,7 @@
 <script>
 import NavTabs from "./../components/NavTabs";
 import RestaurantCard from "./../components/RestaurantCard";
+import RestaurantsNavPills from "./../components/RestaurantsNavPills";
 
 const dummyData = {
   restaurants: [
@@ -262,6 +267,7 @@ export default {
   components: {
     NavTabs,
     RestaurantCard,
+    RestaurantsNavPills,
   },
   data() {
     return {
