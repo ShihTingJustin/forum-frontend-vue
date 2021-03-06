@@ -76,7 +76,7 @@
 export default {
   props: {
     initialRestaurant: {
-      type: Array,
+      type: Object,
       require: true
     }
   },

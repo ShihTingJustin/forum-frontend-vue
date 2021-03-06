@@ -1,7 +1,11 @@
 <template>
   <div class="container py-5">
     <RestaurantDetail :initial-restaurant="restaurant"/>
-    <RestaurantComments :restaurant-comments="restaurantComments" />
+    <hr>
+    <RestaurantComments 
+    :restaurant-comments="restaurantComments" 
+    @after-delete-comment="afterDeleteComment"
+    />
   </div>
 </template>
 
@@ -50,7 +54,7 @@ const dummyData = {
         },
       },
       {
-        id: 3,
+        id: 4,
         text: "Quos asperiores in nostrum cupiditate excepturi aspernatur.",
         UserId: 2,
         RestaurantId: 1,
@@ -132,6 +136,10 @@ export default {
       this.restaurantComments = Comments;
 
       console.log("id:", restaurantId);
+    },
+    afterDeleteComment(commentId) {
+      console.log('afterDeleteComment', commentId)
+      this.restaurantComments = this.restaurantComments.filter(comment => comment.id !== commentId)
     }
   },
 };
