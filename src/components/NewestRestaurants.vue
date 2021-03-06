@@ -5,7 +5,9 @@
       <div v-for="restaurant in restaurants" :key="restaurant.id">
         <h4>
           <a href="#">{{ restaurant.title }}</a>
-          <small>{{ restaurant.Category ? restaurant.Category.name : '未分類' }}</small>
+          <small>{{
+            restaurant.Category ? restaurant.Category.name : "未分類"
+          }}</small>
         </h4>
         <p>
           {{ restaurant.description }}
@@ -24,15 +26,11 @@ small {
 </style>
 
 <script>
-import moment from 'moment'
+import { fromNowFilter } from "./../utils/mixins";
 
 export default {
-  filters: {
-    fromNow(datetime) {
-      if(!datetime) return `-`
-      return moment(datetime).fromNow()
-    }
-  },
+  name: "NewestComments",
+  mixins: [fromNowFilter],
   props: {
     restaurants: {
       type: Array,

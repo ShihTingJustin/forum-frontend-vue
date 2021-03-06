@@ -10,6 +10,7 @@
     >
       <blockquote class="blockquote mb-0">
         <button
+          v-if="currentUser.isAdmin"
           type="button"
           class="btn btn-danger float-right"
         >
@@ -22,7 +23,7 @@
         </h3>
         <p>{{ comment.text }}</p>
         <footer class="blockquote-footer">
-          {{ comment.createdAt }}
+          {{ comment.createdAt | fromNow }}
         </footer>
       </blockquote>
       <hr>
@@ -31,12 +32,31 @@
 </template>
 
 <script>
+import { fromNowFilter } from "./../utils/mixins";
+
+const dummyUser = {
+  currentUser: {
+    id: 1,
+    name: '管理者',
+    email: 'root@example.com',
+    image: 'https://i.pravatar.cc/300',
+    isAdmin: true
+  },
+  isAuthenticated: true
+}
+
 export default {
   name: "RestaurantComments",
+  mixins: [fromNowFilter], 
   props: {
     restaurantComments: {
       type: Array,
       require: true
+    }
+  },
+  data() {
+    return {
+      currentUser: dummyUser.currentUser
     }
   }
 }
